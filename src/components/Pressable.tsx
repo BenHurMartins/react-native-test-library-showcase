@@ -1,6 +1,5 @@
-import React, {FC, ReactNode} from 'react';
+import React, {FC} from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 
 export type PressableProps = {
   onPress: () => void;
@@ -11,8 +10,6 @@ export type PressableProps = {
 const PressableComponent: FC<PressableProps> = ({onPress, title, testID}) => {
   return (
     <Pressable
-      onFocus={() => console.log('Focused')}
-      onBlur={() => console.log('Bl;ured')}
       onPress={onPress}
       testID={testID ?? ''}
       style={({pressed}) => [

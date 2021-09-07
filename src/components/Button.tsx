@@ -1,13 +1,5 @@
-import React, {FC, ReactNode} from 'react';
-import {
-  Button,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {FC} from 'react';
+import {Button} from 'react-native';
 
 export type ButtonProps = {
   onPress: () => void;

@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import Button from '../../components/Button';
-import Pressable from '../../components/Pressable';
+import {Button, Pressable, TextTitle} from '../../components/';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -23,7 +22,7 @@ const Home: FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Your current count is:</Text>
+        <TextTitle>Your current count is:</TextTitle>
         <Text testID={'count'}>{homeScreenData?.count}</Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -39,14 +38,14 @@ const Home: FC = () => {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Your current pokemon is:</Text>
+        <TextTitle>Your current pokemon is:</TextTitle>
         <Image
           testID={'pokemonImage'}
           style={styles.image}
           source={{uri: homeScreenData?.pokemon?.avatar}}
           accessibilityLabel={'This is a pokemon'}
         />
-        <Text style={styles.title}>{homeScreenData?.pokemon?.name}</Text>
+        <TextTitle>{homeScreenData?.pokemon?.name}</TextTitle>
       </View>
       <View>
         <Pressable
