@@ -6,14 +6,24 @@ import 'react-native';
 import React from 'react';
 import Home from './Home';
 import {render, fireEvent, waitFor} from '../../utils/test-utils';
-import axios from 'axios';
+
+import {NavigationContainer} from '@react-navigation/native';
+
+const homeComponent = (
+  <NavigationContainer>
+    <Home />
+  </NavigationContainer>
+);
 
 describe('Home', () => {
   it('renders correctly', () => {
-    render(<Home />);
+    render(homeComponent);
   });
   it('should increment count after clicking increment button', () => {
-    const {getByTestId} = render(<Home />);
+    jest.mock('@react-navigation/native', () => ({
+      useNavigation: () => jest.fn(),
+    }));
+    const {getByTestId} = render(homeComponent);
 
     const incrementButton = getByTestId('incrementCount');
     const count = getByTestId('count');
@@ -22,7 +32,7 @@ describe('Home', () => {
     expect(count.props.children).toEqual(1);
   });
   it('should decrement count after clicking decrement button', () => {
-    const {getByTestId} = render(<Home />);
+    const {getByTestId} = render(homeComponent);
 
     const decrementButton = getByTestId('decrementCount');
     const count = getByTestId('count');
@@ -32,7 +42,7 @@ describe('Home', () => {
     expect(count.props.children).toEqual(0);
   });
   it('should retrieve a pokemon image after clicking get pokemon', async () => {
-    const {getByTestId} = render(<Home />);
+    const {getByTestId} = render(homeComponent);
 
     const incrementButton = getByTestId('incrementCount');
     const getPokemonButton = getByTestId('getPokemon');

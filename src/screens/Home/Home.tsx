@@ -3,6 +3,7 @@ import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {Button, Pressable, TextTitle} from '../../components/';
 
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
 
 import {
   decrementCounter,
@@ -11,9 +12,14 @@ import {
 } from '../../redux/Numbers/Numbers.reducer';
 
 import homeScreenSelector from './Home.selector';
+import {RootStackParamList} from '../../routes/RootStackParams';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type HomeScreenRouteProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 const Home: FC = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<HomeScreenRouteProp>();
   const homeScreenData = useSelector(homeScreenSelector);
   const dispatchIncrement = () => dispatch(incrementCounter());
   const dispatchDecrement = () => dispatch(decrementCounter());
@@ -22,7 +28,9 @@ const Home: FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
-        <TextTitle>Your current count is:</TextTitle>
+        <TextTitle testID={'labelCurrentCount'}>
+          Your current count is:
+        </TextTitle>
         <Text testID={'count'}>{homeScreenData?.count}</Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -54,6 +62,13 @@ const Home: FC = () => {
           title={'Get Pokemon'}
         />
       </View>
+      {homeScreenData?.pokemon?.name ? (
+        <Pressable
+          testID={'showPokemonDetail'}
+          onPress={() => navigation.navigate('Detail')}
+          title={'Show Pokemon Detail'}
+        />
+      ) : null}
     </SafeAreaView>
   );
 };

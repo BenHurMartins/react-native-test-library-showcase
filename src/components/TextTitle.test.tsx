@@ -5,11 +5,10 @@
 import 'react-native';
 import React from 'react';
 import {TextTitle} from './';
-import {render, fireEvent, waitFor} from '../utils/test-utils';
+import {render} from '../utils/test-utils';
 
 describe('TextTitle', () => {
   it('renders correctly', () => {
-    const onPressMock = jest.fn();
     render(<TextTitle>Test Title</TextTitle>);
   });
   it('should show exactly the passed text', () => {
