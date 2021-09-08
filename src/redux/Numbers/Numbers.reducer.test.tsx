@@ -1,11 +1,9 @@
 import Pokemon from '../../models/Pokemon';
 import reducer, {
   decrementCounter,
-  fetchingPokemonCompleted,
   incrementCounter,
   INITIAL_STATE,
   NumberState,
-  startFetchingPokemon,
 } from './Numbers.reducer';
 
 describe('Number Reducer', () => {
@@ -27,34 +25,6 @@ describe('Number Reducer', () => {
       };
 
       expect(reducer(INITIAL_STATE, decrementCounter)).toEqual(expectedResult);
-    });
-  });
-  describe('startFetchingPokemon', () => {
-    it('should set the state to true if the user is fetching a pokemon', () => {
-      const expectedResult: NumberState = {
-        ...INITIAL_STATE,
-        isFetchingPokemon: true,
-      };
-      expect(reducer(INITIAL_STATE, startFetchingPokemon)).toEqual(
-        expectedResult,
-      );
-    });
-  });
-  describe('fetchingPokemonCompleted', () => {
-    it('should add pokemon to the state and set isFetchingPokemon to false', () => {
-      const pokemon: Pokemon = {
-        avatar: 'www.image.com',
-        name: 'Blastoise',
-      };
-
-      const expectedResult: NumberState = {
-        ...INITIAL_STATE,
-        isFetchingPokemon: false,
-        pokemon,
-      };
-      expect(reducer(INITIAL_STATE, fetchingPokemonCompleted(pokemon))).toEqual(
-        expectedResult,
-      );
     });
   });
 });

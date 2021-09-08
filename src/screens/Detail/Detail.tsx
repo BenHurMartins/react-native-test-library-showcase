@@ -1,17 +1,14 @@
 import React, {FC} from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, View} from 'react-native';
 import {TextTitle} from '../../components/';
 
 import {useDispatch, useSelector} from 'react-redux';
-
-import {startFetchingPokemon} from '../../redux/Numbers/Numbers.reducer';
 
 import detailScreenSelector from './Detail.selector';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
   const detailScreenData = useSelector(detailScreenSelector);
-  const dispatchFetchPokemon = () => dispatch(startFetchingPokemon());
 
   return (
     <SafeAreaView style={styles.container}>

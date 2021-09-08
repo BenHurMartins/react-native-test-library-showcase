@@ -1,9 +1,7 @@
 import {createStructuredSelector} from 'reselect';
 import Pokemon from '../../models/Pokemon';
-import {
-  selectCount,
-  selectPokemon,
-} from '../../redux/Numbers/Numbers.selectors';
+import {selectCount} from '../../redux/Numbers/Numbers.selectors';
+import {selectPokemon} from '../../redux/Pokemons/Pokemons.selectors';
 import {RootState} from '../../store';
 
 type HomeScreenData = {

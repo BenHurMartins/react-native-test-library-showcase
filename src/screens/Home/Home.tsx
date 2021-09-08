@@ -8,9 +8,8 @@ import {useNavigation} from '@react-navigation/core';
 import {
   decrementCounter,
   incrementCounter,
-  startFetchingPokemon,
 } from '../../redux/Numbers/Numbers.reducer';
-
+import {startFetchingPokemon} from '../../redux/Pokemons/Pokemons.reducer';
 import homeScreenSelector from './Home.selector';
 import {RootStackParamList} from '../../routes/RootStackParams';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -60,6 +59,11 @@ const Home: FC = () => {
           testID={'getPokemon'}
           onPress={() => dispatchFetchPokemon()}
           title={'Get Pokemon'}
+        />
+        <Pressable
+          testID={'navigateList'}
+          onPress={() => navigation.navigate('List')}
+          title={'List'}
         />
       </View>
       {homeScreenData?.pokemon?.name ? (

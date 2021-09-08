@@ -1,16 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
-import Pokemon from '../../models/Pokemon';
 
 export type NumberState = {
   count: number;
-  pokemon: Pokemon | null;
-  isFetchingPokemon: boolean;
 };
 
 export const INITIAL_STATE: NumberState = {
   count: 0,
-  pokemon: null,
-  isFetchingPokemon: false,
 };
 
 const numberReducer = createSlice({
@@ -23,21 +18,9 @@ const numberReducer = createSlice({
     decrementCounter: state => {
       state.count -= 1;
     },
-    startFetchingPokemon: state => {
-      state.isFetchingPokemon = true;
-    },
-    fetchingPokemonCompleted: (state, action) => {
-      state.isFetchingPokemon = false;
-      state.pokemon = action.payload;
-    },
   },
 });
 
-export const {
-  incrementCounter,
-  decrementCounter,
-  startFetchingPokemon,
-  fetchingPokemonCompleted,
-} = numberReducer.actions;
+export const {incrementCounter, decrementCounter} = numberReducer.actions;
 
 export default numberReducer.reducer;

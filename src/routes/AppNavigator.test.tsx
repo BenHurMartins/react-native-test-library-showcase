@@ -1,7 +1,5 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {render, fireEvent, waitFor} from '../utils/test-utils';
 
 import AppNavigator from './AppNavigator';
@@ -28,10 +26,10 @@ describe('Testing react navigation', () => {
     fireEvent.press(getPokemonButton);
     await waitFor(() => expect(pokemonImage.props.source.uri).toBeTruthy());
     //navigating to detail screen
-    const showPokemonDetailButton = await getByTestId('showPokemonDetail');
+    const showPokemonDetailButton = getByTestId('showPokemonDetail');
     fireEvent.press(showPokemonDetailButton);
 
-    const headerDetail = await findByText('Detail');
+    const headerDetail = findByText('Detail');
     expect(headerDetail).toBeTruthy();
   });
 });
