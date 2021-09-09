@@ -60,6 +60,9 @@
     "setupFiles": [
       "<rootDir>/jest/setup.js"
     ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest/setupAfterEnv.js"
+    ],
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)"
     ]

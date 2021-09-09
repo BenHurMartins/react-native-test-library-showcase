@@ -12,7 +12,7 @@ describe('Button', () => {
     const onPressMock = jest.fn();
     render(<Pressable onPress={onPressMock} title={'Test Pressable'} />);
   });
-  it('should exec the passed function once', () => {
+  it('should exec the passed function once', async () => {
     const onPressMock = jest.fn();
     const {getByTestId} = render(
       <Pressable
@@ -25,7 +25,7 @@ describe('Button', () => {
     fireEvent.press(pressable);
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });
-  it('should count two clicks', () => {
+  it('should count two clicks', async () => {
     const onPressMock = jest.fn();
     const {getByTestId} = render(
       <Pressable

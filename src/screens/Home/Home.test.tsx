@@ -8,6 +8,8 @@ import Home from './Home';
 import {render, fireEvent, waitFor} from '../../utils/test-utils';
 
 import {NavigationContainer} from '@react-navigation/native';
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {sagaMiddleware, reducers} from '../../store';
 
 const homeComponent = (
   <NavigationContainer>
@@ -15,9 +17,20 @@ const homeComponent = (
   </NavigationContainer>
 );
 
+export const store = () =>
+  configureStore({
+    reducer: reducers,
+    middleware: getDefaultMiddleware => {
+      const reduxDefaultMiddleware = getDefaultMiddleware();
+      return [...reduxDefaultMiddleware, sagaMiddleware];
+    },
+    //I can pre load some states if needed
+    preloadedState: {number: {count: 0}},
+  });
+
 describe('Home', () => {
   it('renders correctly', () => {
-    render(homeComponent);
+    render(homeComponent, {store: store(), renderOptions: {}});
   });
   it('should increment count after clicking increment button', () => {
     jest.mock('@react-navigation/native', () => ({
@@ -32,14 +45,16 @@ describe('Home', () => {
     expect(count.props.children).toEqual(1);
   });
   it('should decrement count after clicking decrement button', () => {
-    const {getByTestId} = render(homeComponent);
+    const {getByTestId} = render(homeComponent, {
+      store: store(),
+      renderOptions: {},
+    });
 
     const decrementButton = getByTestId('decrementCount');
     const count = getByTestId('count');
     fireEvent.press(decrementButton);
 
-    //The Previous state was 1
-    expect(count.props.children).toEqual(0);
+    expect(count.props.children).toEqual(-1);
   });
   it('should retrieve a pokemon image after clicking get pokemon', async () => {
     const {getByTestId} = render(homeComponent);

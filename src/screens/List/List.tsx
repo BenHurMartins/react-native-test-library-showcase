@@ -6,7 +6,7 @@ import {startFetchingPokemonList} from '../../redux/Pokemons/Pokemons.reducer';
 
 import listScreenSelector from './List.selector';
 
-import {ListItemPokemon} from '../../components';
+import {ListItemPokemon, InfoCard} from '../../components';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const Home: FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <InfoCard show={listScreenData.isFetchingPokemonList} />
       <FlatList
         testID={'pokemonList'}
         data={listScreenData.pokemonList}

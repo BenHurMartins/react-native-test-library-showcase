@@ -10,16 +10,16 @@ import pokemonsReducer from '../redux/Pokemons/Pokemons.reducer';
 import createSagaMiddleware from '@redux-saga/core';
 import {pokemonsRootSaga} from '../redux/Pokemons/Pokemons.saga';
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
   number: numbersReducer,
   pokemon: pokemonsReducer,
 });
 
-const rootSaga = function* rootSaga() {
+export const rootSaga = function* rootSaga() {
   yield all([fork(pokemonsRootSaga)]);
 };
 
-const sagaMiddleware = createSagaMiddleware();
+export const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: reducers,
   middleware: getDefaultMiddleware => {

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {Button, Pressable, TextTitle, PressableRound} from '../../components/';
+import {Pressable, TextTitle, PressableRound} from '../../components/';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
