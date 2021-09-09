@@ -6,6 +6,8 @@ import {startFetchingPokemonList} from '../../redux/Pokemons/Pokemons.reducer';
 
 import listScreenSelector from './List.selector';
 
+import {ListItemPokemon} from '../../components';
+
 const Home: FC = () => {
   const dispatch = useDispatch();
   const listScreenData = useSelector(listScreenSelector);
@@ -24,9 +26,11 @@ const Home: FC = () => {
         onEndReachedThreshold={0.7}
         renderItem={({item, index}) => {
           return (
-            <Text testID={`listItemPokemon${index}`} key={index}>
-              {item.name}
-            </Text>
+            <ListItemPokemon
+              testID={`listItemPokemon${index}`}
+              key={index}
+              item={item}
+            />
           );
         }}
       />
@@ -38,8 +42,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 

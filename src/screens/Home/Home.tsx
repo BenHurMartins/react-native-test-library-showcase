@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {Button, Pressable, TextTitle} from '../../components/';
+import {Button, Pressable, TextTitle, PressableRound} from '../../components/';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/core';
@@ -26,24 +26,23 @@ const Home: FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.textContainer}>
-        <TextTitle testID={'labelCurrentCount'}>
-          Your current count is:
-        </TextTitle>
-        <Text testID={'count'}>{homeScreenData?.count}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
+      <TextTitle testID={'labelCurrentCount'}>
+        Your current pokemon number is:
+      </TextTitle>
+      <View style={styles.counterContainer}>
+        <PressableRound
           onPress={() => dispatchDecrement()}
-          title={'Decrement Counter'}
+          title={'-'}
           testID={'decrementCount'}
         />
-        <Button
+        <Text testID={'count'}>{homeScreenData?.count}</Text>
+        <PressableRound
           onPress={() => dispatchIncrement()}
-          title={'Increment Counter'}
+          title={'+'}
           testID={'incrementCount'}
         />
       </View>
+      <View style={styles.buttonContainer}></View>
       <View style={styles.textContainer}>
         <TextTitle>Your current pokemon is:</TextTitle>
         <Image
@@ -58,12 +57,12 @@ const Home: FC = () => {
         <Pressable
           testID={'getPokemon'}
           onPress={() => dispatchFetchPokemon()}
-          title={'Get Pokemon'}
+          title={'Fetch Pokemon'}
         />
         <Pressable
           testID={'navigateList'}
           onPress={() => navigation.navigate('List')}
-          title={'List'}
+          title={'List Pokemons'}
         />
       </View>
       {homeScreenData?.pokemon?.name ? (
@@ -97,6 +96,12 @@ const styles = StyleSheet.create({
   textContainer: {
     width: '100%',
     alignItems: 'center',
+  },
+  counterContainer: {
+    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   buttonContainer: {
     flexDirection: 'row',
