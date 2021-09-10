@@ -40,7 +40,7 @@ describe('List', () => {
     const items = await findAllByTestId(/listItemPokemon2[0-9]/);
     await waitFor(() => expect(items.length).toEqual(10));
   });
-  it('should show loading new elements component then hide it', async () => {
+  it('should show loading card info component then hide it', async () => {
     const {getByText} = component();
     await act(async () => {});
     await waitFor(() => expect(getByText('Loading...')).toBeTruthy());

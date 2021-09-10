@@ -17,19 +17,19 @@ const InfoCard: FC<PressableProps> = ({show}) => {
       setTimeout(() => {
         Animated.timing(top, {
           toValue: -100,
-          duration: 800,
+          duration: 500,
           useNativeDriver: false,
         }).start(({finished}) => {
           if (finished) setShowComponent(false);
         });
-      }, 3000);
+      }, 1000);
     }
   }, [show]);
   useEffect(() => {
     if (showComponent)
       Animated.timing(top, {
         toValue: 20,
-        duration: 800,
+        duration: 500,
         useNativeDriver: false,
       }).start();
   }, [showComponent]);
